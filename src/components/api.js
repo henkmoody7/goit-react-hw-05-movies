@@ -21,3 +21,25 @@ export const fetchMovieDetails = async movieId => {
     console.error(error);
   }
 };
+
+export const fetchMovieCast = async movieId => {
+  try {
+    const response = await axios.get(
+      `/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+    );
+    return response.data.cast;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchMovieReviews = async movieId => {
+  try {
+    const response = await axios.get(
+      `movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
