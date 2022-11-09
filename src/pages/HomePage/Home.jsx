@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { fetchTrendFilm } from '../../components/api';
-
+import { TrendFilmList, TrendFilmLink } from './Home.styled';
 export const Home = () => {
   const [films, setFilms] = useState([]);
   useEffect(() => {
@@ -17,13 +16,14 @@ export const Home = () => {
   });
   return (
     <>
-      <ul>
+      <h1>Trending today</h1>
+      <TrendFilmList>
         {films.map(({ id, original_title }) => (
           <li key={id}>
-            <Link to={`movies/${id}`}>{original_title}</Link>
+            <TrendFilmLink to={`movies/${id}`}>{original_title}</TrendFilmLink>
           </li>
         ))}
-      </ul>
+      </TrendFilmList>
     </>
   );
 };

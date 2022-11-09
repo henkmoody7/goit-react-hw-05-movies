@@ -10,7 +10,7 @@ export const Reviews = () => {
     (async () => {
       try {
         const reviews = await fetchMovieReviews(movieId);
-        setReviews(reviews);
+        setReviews(reviews.results);
       } catch (error) {
         alert('Oops, something went wrong, try again');
       }
@@ -21,5 +21,16 @@ export const Reviews = () => {
     return null;
   }
 
-  return <p>rew</p>;
+  return (
+    <p>
+      {reviews.length > 0
+        ? reviews.map(review => (
+            <div key={review.id}>
+              <b>{review.author}</b>
+              <p>{review.content}</p>
+            </div>
+          ))
+        : "We don't have any reviews for this movie"}
+    </p>
+  );
 };

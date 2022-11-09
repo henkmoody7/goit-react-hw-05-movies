@@ -22,21 +22,26 @@ export const Cast = () => {
   }
 
   return (
-    // <div>
-    //   {cast && (
-    //     <>
-    //       <img
-    //         src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-    //         alt="vz"
-    //       />
-    //       <div>
-    //         <p></p>
-    //         <p></p>
-    //       </div>
-    //       ss
-    //     </>
-    //   )}
-    // </div>
-    <p>cdsvc</p>
+    <div>
+      {cast.map(
+        ({ profile_path, original_name, character, id }) =>
+          profile_path && (
+            <ul key={id}>
+              {' '}
+              <li>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                  alt="vz"
+                  width={150}
+                />
+                <div>
+                  <p>{original_name}</p>
+                  <p>Character: {character}</p>
+                </div>
+              </li>
+            </ul>
+          )
+      )}
+    </div>
   );
 };
