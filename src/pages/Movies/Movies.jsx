@@ -9,7 +9,6 @@ export const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('query') ?? '';
   const location = useLocation();
-  console.log(location);
   useEffect(() => {
     if (movieName === '') return;
 
