@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { fetchTrendFilm } from '../../components/api';
-import { TrendFilmList, TrendFilmLink } from './Home.styled';
+import {
+  TrendFilmList,
+  TrendFilmLink,
+  TrendFilmItem,
+  MovieTitle,
+} from './Home.styled';
 export const Home = () => {
   const [films, setFilms] = useState([]);
   useEffect(() => {
@@ -15,15 +20,21 @@ export const Home = () => {
     })();
   });
   return (
-    <>
+    <main>
       <h1>Trending today</h1>
       <TrendFilmList>
-        {films.map(({ id, original_title }) => (
-          <li key={id}>
-            <TrendFilmLink to={`movies/${id}`}>{original_title}</TrendFilmLink>
-          </li>
+        {films.map(({ id, poster_path, title }) => (
+          <TrendFilmItem key={id}>
+            <TrendFilmLink to={`movies/${id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                alt={title}
+              />
+              <MovieTitle>{title}</MovieTitle>
+            </TrendFilmLink>
+          </TrendFilmItem>
         ))}
       </TrendFilmList>
-    </>
+    </main>
   );
 };

@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
+import {} from './MovieInfo.styled';
 export const MovieInfo = ({ movie }) => {
+  const location = useLocation();
   const genres = movie.genres.map(genre => genre.name + ' ');
   const { title, backdrop_path, release_date, vote_average, overview } = movie;
   return (
@@ -8,6 +9,7 @@ export const MovieInfo = ({ movie }) => {
       <img
         src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
         alt={title}
+        width="600px"
       />
       <div>
         <h2>
@@ -20,8 +22,12 @@ export const MovieInfo = ({ movie }) => {
         <p>{genres}</p>
       </div>
       <h3>Additional information</h3>
-      <Link to={`cast`}>Cast</Link>
-      <Link to={`reviews`}>Reviews</Link>
+      <Link to={`cast`} state={{ from: location.state?.from }}>
+        Cast
+      </Link>
+      <Link to={`reviews`} state={{ from: location.state?.from }}>
+        Reviews
+      </Link>
     </>
   );
 };

@@ -48,7 +48,7 @@ export const fetchMovieReviews = async movieId => {
 export const fetchMovieByQuerry = async query => {
   try {
     const response = await axios.get(
-      `search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&signal=${controller.signal}`
+      `search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=2&signal=${controller.signal}`
     );
     return response.data.results;
   } catch (error) {

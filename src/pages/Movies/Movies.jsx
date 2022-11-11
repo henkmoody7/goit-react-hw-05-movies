@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchMovieByQuerry } from 'components/api';
-import { Link, useLocation } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import {
+  TrendFilmList as SearchedFilmList,
+  TrendFilmItem as SearchFilmItem,
+  TrendFilmLink as SearchFilmLink,
+  MovieTitle,
+} from 'pages/HomePage/Home.styled';
 export const Movies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
 
@@ -34,15 +39,19 @@ export const Movies = () => {
         <input type="text" name="movieName" />
         <button type="submit">Search</button>
       </form>
-      <ul>
+      <SearchedFilmList>
         {searchedMovies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: location }}>
-              {movie.original_title}
-            </Link>
-          </li>
+          <SearchFilmItem key={movie.id}>
+            <SearchFilmLink to={`${movie.id}`} state={{ from: location }}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <MovieTitle>{movie.title}</MovieTitle>
+            </SearchFilmLink>
+          </SearchFilmItem>
         ))}
-      </ul>
+      </SearchedFilmList>
     </>
   );
 };
