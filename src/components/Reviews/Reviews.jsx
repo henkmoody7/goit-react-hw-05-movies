@@ -22,7 +22,7 @@ const Reviews = () => {
   }
 
   return (
-    <p>
+    <div>
       {reviews.length > 0
         ? reviews.map(review => (
             <div key={review.id}>
@@ -31,7 +31,7 @@ const Reviews = () => {
             </div>
           ))
         : "We don't have any reviews for this movie"}
-    </p>
+    </div>
   );
 };
 export default Reviews;

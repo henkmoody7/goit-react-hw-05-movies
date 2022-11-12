@@ -5,7 +5,11 @@ export const GoBackLink = styled(Link)`
   width: max-content;
   margin-bottom: ${p => p.theme.space[4]}px;
   margin-top: ${p => p.theme.space[4]}px;
-  padding: ${p => p.theme.space[2]}px;
+  padding: ${p => p.theme.space[3]}px;
   box-shadow: -1px 0px 2px 2px rgba(232, 223, 232, 1);
   border-radius: ${p => p.theme.radii.normal};
+  &:hover {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+  }
 `;

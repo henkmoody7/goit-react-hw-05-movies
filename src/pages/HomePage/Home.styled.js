@@ -11,6 +11,7 @@ export const TrendFilmList = styled.ul`
 `;
 
 export const TrendFilmItem = styled.li`
+  margin-top: 10px;
   width: calc((100% / 3) - 15px);
   height: 100%;
   border-radius: ${p => p.theme.radii.normal};

@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchMovieByQuerry } from 'components/api';
-import { useLocation } from 'react-router-dom';
-import {
-  TrendFilmList as SearchedFilmList,
-  TrendFilmItem as SearchFilmItem,
-  TrendFilmLink as SearchFilmLink,
-  MovieTitle,
-} from 'pages/HomePage/Home.styled';
+import { SearchedMoviesList } from 'components/SearchedMoviesList/SearchedMoviesList';
+import { Input, SearchButton, SearchForm } from './Movies.styled';
+
 export const Movies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('query') ?? '';
-  const location = useLocation();
+
   useEffect(() => {
     if (movieName === '') return;
 
@@ -35,11 +31,20 @@ export const Movies = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <input type="text" name="movieName" />
-        <button type="submit">Search</button>
-      </form>
-      <SearchedFilmList>
+      <SearchForm onSubmit={onSubmit}>
+        <Input
+          required
+          id="outlined-required"
+          label="movie name"
+          name="movieName"
+          margin="normal"
+        />
+        <SearchButton variant="outlined" size="large" type="submit">
+          Search
+        </SearchButton>
+      </SearchForm>
+      <SearchedMoviesList movies={searchedMovies} />
+      {/* <SearchedFilmList>
         {searchedMovies.map(movie => (
           <SearchFilmItem key={movie.id}>
             <SearchFilmLink to={`${movie.id}`} state={{ from: location }}>
@@ -51,7 +56,7 @@ export const Movies = () => {
             </SearchFilmLink>
           </SearchFilmItem>
         ))}
-      </SearchedFilmList>
+      </SearchedFilmList> */}
     </>
   );
 };

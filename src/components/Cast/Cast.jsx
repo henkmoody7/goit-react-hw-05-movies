@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchMovieCast } from 'components/api';
 import { useParams } from 'react-router-dom';
-
+import { CastList, CastListItem, Character } from './Cast.styled';
 const Cast = () => {
   const [cast, setCast] = useState(null);
   const { movieId } = useParams();
@@ -23,25 +23,26 @@ const Cast = () => {
 
   return (
     <div>
-      {cast.map(
-        ({ profile_path, original_name, character, id }) =>
-          profile_path && (
-            <ul key={id}>
-              {' '}
-              <li>
+      <CastList>
+        {cast.map(
+          ({ profile_path, original_name, character, id }) =>
+            profile_path && (
+              <CastListItem key={id}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                   alt="vz"
-                  width={150}
+                  width={250}
                 />
                 <div>
-                  <p>{original_name}</p>
-                  <p>Character: {character}</p>
+                  <b>{original_name}</b>
+                  <p>
+                    Character: <Character>{character}</Character>
+                  </p>
                 </div>
-              </li>
-            </ul>
-          )
-      )}
+              </CastListItem>
+            )
+        )}
+      </CastList>
     </div>
   );
 };
